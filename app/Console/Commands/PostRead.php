@@ -34,53 +34,76 @@ class PostRead extends Command
     {
         $this->api = new Api;
 
-        $ids = Models\Post::select('remote_id')->lists('remote_id')->toArray();
+        $post_ids = $this->getPostsIds();
 
         foreach ($this->api->getPosts() as $post) {
-            if ($this->validPost($post, $ids)) {
-                $this->processPost($post);
+            if ($this->validPost($post)) {
+                $this->processPost($post, $post_ids);
             }
         }
     }
 
     /**
-     * @param object $post
-     * @param array  $ids
-     *
-     * @return boolean
+     * @return object
      */
-    private function validPost($post, $ids)
+    private function getPostsIds()
     {
-        return !in_array($post->link_id, $ids) && ($post->status === 'published');
+        return Models\Post::select(['id', 'remote_id'])->get()->keyBy('remote_id');
     }
 
     /**
      * @param object $post
      *
+     * @return object
+     */
+    private function getCommentsIds($post)
+    {
+        return Models\Comment::select(['id', 'remote_id'])
+            ->where('post_id', $post->id)
+            ->get()->keyBy('remote_id');
+    }
+
+    /**
+     * @param object $post
+     *
+     * @return boolean
+     */
+    private function validPost($post)
+    {
+        return ($post->status === 'published');
+    }
+
+    /**
+     * @param object $post
+     * @param object $post_ids
+     *
      * @return void
      */
-    private function processPost($post)
+    private function processPost($post, $post_ids)
     {
         app('db')->beginTransaction();
 
         $this->info('Loading Post: "'.$post->title.'"');
 
-        $slug = array_filter(array_map('trim', explode('/', $post->link)));
+        if ($exists = $post_ids->get($post->link_id)) {
+            $this->info('Post already exists');
 
-        $post = Models\Post::create([
-            'slug' => end($slug),
-            'title' => $post->title,
-            'text' => Models\Post::fixText($post->description),
-            'link' => $post->link,
-            'user' => $post->user,
-            'karma' => $post->karma,
-            'created_at' => date('Y-m-d H:i:s', strtotime($post->pubDate)),
-            'remote_id' => $post->link_id
-        ]);
+            $post = $exists;
+            $comment_ids = $this->getCommentsIds($post);
+        } else {
+            $this->info('Insert new post');
+
+            $post = $this->insertPost($post);
+            $comment_ids = collect();
+        }
 
         $insert = [];
 
         foreach ($this->api->getComments($post->remote_id) as $comment) {
+            if ($comment_ids->get($comment->comment_id)) {
+                continue;
+            }
+
             $insert[] = [
                 'text' => Models\Comment::fixText($comment->description),
                 'link' => $comment->link,
@@ -93,38 +116,60 @@ class PostRead extends Command
             ];
         }
 
-        $count = count($insert);
+        $total = count($insert) + $comment_ids->count();
 
-        if ($count < $this->minimum) {
-            $this->skipPost($count);
+        if ($total < $this->minimum) {
+            $this->skipTransaction($total);
+        } elseif ($insert) {
+            $this->commitTransaction($insert);
         } else {
-            $this->savePost($insert, $count);
+            $this->info('No new comments to add');
         }
     }
 
     /**
-     * @param integer $count
+     * @param object $post
+     *
+     * @return object
+     */
+    private function insertPost($post)
+    {
+        $slug = array_filter(array_map('trim', explode('/', $post->link)));
+
+        return Models\Post::create([
+            'slug' => end($slug),
+            'title' => $post->title,
+            'text' => Models\Post::fixText($post->description),
+            'link' => $post->link,
+            'user' => $post->user,
+            'karma' => $post->karma,
+            'created_at' => date('Y-m-d H:i:s', strtotime($post->pubDate)),
+            'remote_id' => $post->link_id
+        ]);
+    }
+
+    /**
+     * @param integer $total
      *
      * @return void
      */
-    private function skipPost($count)
+    private function skipTransaction($total)
     {
         app('db')->rollBack();
 
-        $this->error('Skiped post, only '.$count.' comments');
+        $this->error('Skiped post, only '.$total.' comments');
     }
 
     /**
      * @param array   $insert
-     * @param integer $count
      *
      * @return void
      */
-    private function savePost($insert, $count)
+    private function commitTransaction($insert)
     {
         Models\Comment::insert($insert);
 
-        $this->info('Inserted '.$count.' comments');
+        $this->info('Inserted '.count($insert).' comments');
 
         app('db')->commit();
     }
