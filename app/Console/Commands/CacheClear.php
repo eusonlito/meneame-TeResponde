@@ -21,12 +21,12 @@ class CacheClear extends Command
     /**
      * @var array
      */
-    private $folders = ['curl'];
+    private $folders = ['curl', 'html'];
 
     /**
      * @var integer
      */
-    private $older = 2;
+    private $older = 0;
 
     /**
      * @return void
