@@ -26,7 +26,7 @@ class CacheClear extends Command
     /**
      * @var integer
      */
-    private $older = 10;
+    private $older = 2;
 
     /**
      * @return void
