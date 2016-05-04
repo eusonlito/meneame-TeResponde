@@ -6,4 +6,18 @@ La idea es recopilar los <a href="https://www.meneame.net/m/TeRespondo">TeRespon
 
 La ordenación es de preguntas más valoradas a menos, hasta un mínimo de 10 de karma.
 
-No es mucha cosa, pero ahí queda :)
+Puedes ver una demo aquí https://meneame-responde.lito.com.es/
+
+Para instalar:
+
+```
+$> git clone https://github.com/eusonlito/meneame-responde.git
+$> cd meneame-response
+$> composer install
+$> cp .env.example .env
+
+# Configurar la base de datos en el fichero .env
+
+$> php artisan migrate
+$> php artisan post:read
+```
