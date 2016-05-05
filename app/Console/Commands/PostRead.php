@@ -32,6 +32,8 @@ class PostRead extends Command
      */
     public function handle()
     {
+        $this->info('START: '.date('Y-m-d H:i:s'));
+
         $this->api = new Api;
 
         $post_ids = $this->getPostsIds();
@@ -41,6 +43,8 @@ class PostRead extends Command
                 $this->processPost($post, $post_ids);
             }
         }
+
+        $this->info('END: '.date('Y-m-d H:i:s'));
     }
 
     /**

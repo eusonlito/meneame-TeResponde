@@ -33,12 +33,16 @@ class CacheClear extends Command
      */
     public function handle()
     {
+        $this->info('START: '.date('Y-m-d H:i:s'));
+
         foreach ($this->folders as $folder) {
             $folder = storage_path('cache/'.$folder);
 
-            $this->deleteFiles($folder, false);
+            $this->deleteFiles($folder);
             $this->deleteEmptyFolders($folder, false);
         }
+
+        $this->info('END: '.date('Y-m-d H:i:s'));
     }
 
     /**
