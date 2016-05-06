@@ -12,10 +12,10 @@
         <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
         <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
 
-        <link href="{{ url('css/clean-blog.min.css') }}" rel="stylesheet">
-        <link href="{{ url('css/custom.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/clean-blog.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
-        <link rel="icon" type="image/x-icon" href="{{ url('favicon.ico') }}">
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -91,6 +91,6 @@
         <script src="//code.jquery.com/jquery-2.2.3.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-        <script src="{{ url('js/clean-blog.min.js') }}"></script>
+        <script src="{{ asset('js/clean-blog.min.js') }}"></script>
     </body>
 </html>

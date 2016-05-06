@@ -35,7 +35,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <a href="<?= route('site.index'); ?>"><img src="<?= url('img/404.png'); ?>" /></a>
+                <a href="<?= route('site.index'); ?>"><img src="<?= asset('img/404.png'); ?>" /></a>
             </div>
         </div>
     </body>
