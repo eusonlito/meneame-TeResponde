@@ -8,6 +8,6 @@ class Exception extends Controller
      */
     public function error404()
     {
-        return view('pages.error.404');
+        return response(view('pages.error.404'), 404);
     }
 }
