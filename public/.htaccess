@@ -9,6 +9,11 @@ DirectoryIndex index.php
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)/$ /$1 [L,R=301]
 
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond $1#%{REQUEST_FILENAME} ^([a-z0-9/-]+)#(.*/public)/
+    RewriteCond %2/storage/cache/%1.html -f
+    RewriteRule ^([a-z0-9/-]+)$ storage/cache/$1.html [L,NC]
+
     # Catch all script
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
