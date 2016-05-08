@@ -234,7 +234,7 @@ class PostRead extends Command
     private function updateComment($comment, $current)
     {
         $current->update([
-            'text' => Models\Post::fixText($comment->description),
+            'text' => Models\Comment::fixText($comment->description),
             'link' => $comment->link,
             'karma' => $comment->karma,
             'checksum' => $comment->checksum
