@@ -12,13 +12,11 @@ trait Comment
     {
         return preg_replace([
             '$</p>.*$',
-            '$<img[^>]+>$',
             '$<a class="tooltip [^"]+" href="[^"]+" rel="nofollow">#([0-9]+)</a>$'
         ], [
             '</p>',
-            '',
             '<a href="#comment-$1">#$1</a>'
-        ], $text);
+        ], strip_tags($text, '<p><a><b><strong><i><u><del><em>'));
     }
 
     /**

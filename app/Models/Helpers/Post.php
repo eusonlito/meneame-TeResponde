@@ -12,10 +12,8 @@ trait Post
     {
         return preg_replace([
             '$</p>.*$',
-            '$<img[^>]+>$',
         ], [
             '</p>',
-            '',
-        ], $text);
+        ], strip_tags($text, '<p><a><b><strong><i><u><del><em>'));
     }
 }
