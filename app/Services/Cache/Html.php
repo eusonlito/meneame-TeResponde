@@ -53,7 +53,9 @@ class Html
      */
     public static function setFromUri($contents)
     {
-        return self::set(parse_url(app('request')->path(), PHP_URL_PATH), $contents);
+        $path = parse_url(app('request')->path(), PHP_URL_PATH);
+
+        return self::set(((empty($path) || ($path === '/')) ? 'index' : $path), $contents);
     }
 
     /**

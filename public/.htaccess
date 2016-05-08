@@ -5,9 +5,11 @@ DirectoryIndex index.php
 
     RewriteEngine On
 
-    RewriteCond storage/cache/$1.html -f
-    RewriteRule ^([a-z0-9/-]+)$ storage/cache/$1.html [L,NC]
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)/$ /$1 [L,R=301]
 
+    # Catch all script
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
