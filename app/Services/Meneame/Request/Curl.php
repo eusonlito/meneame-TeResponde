@@ -3,7 +3,6 @@ namespace App\Services\Meneame\Request;
 
 use App\Services\Meneame\Cache\Cache;
 use App\Services\Meneame\Parser\Xml;
-use stdClass;
 
 class Curl
 {
@@ -79,21 +78,7 @@ class Curl
         $items = array();
 
         foreach ($xml['rss']['channel'][0]['item'] as $item) {
-            $xml = Xml::fromString('<root>'.trim($item['@value']).'</root>');
-
-            $item = new stdClass;
-
-            foreach ($xml['root'] as $key => $value) {
-                $value = $value[0]['@value'];
-
-                if (!is_array($value)) {
-                    $item->$key = $value;
-                } elseif (isset($value['@cdata'])) {
-                    $item->$key = $value['@cdata'];
-                }
-            }
-
-            $items[] = $item;
+            $items[] = Xml::stringToObject($item['@value']);
         }
 
         return $items;

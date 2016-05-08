@@ -3,6 +3,7 @@ namespace App\Services\Meneame\Parser;
 
 use DOMDocument;
 use Exception;
+use stdClass;
 
 class Xml
 {
@@ -40,6 +41,27 @@ class Xml
         $xml->appendChild(self::arrayToNode($xml, 'resources', $array['resources']));
 
         return $xml->saveXML();
+    }
+
+    public static function stringToObject($xml)
+    {
+        $xml = self::fromString('<root>'.trim($xml).'</root>');
+
+        $item = new stdClass;
+
+        foreach ($xml['root'] as $key => $value) {
+            $value = $value[0]['@value'];
+
+            if (!is_array($value)) {
+                $item->$key = $value;
+            } elseif (isset($value['@cdata'])) {
+                $item->$key = $value['@cdata'];
+            }
+        }
+
+        $item->checksum = md5(serialize($item));
+
+        return $item;
     }
 
     private static function nodeToArray($node)

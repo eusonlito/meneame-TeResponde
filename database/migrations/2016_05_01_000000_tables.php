@@ -28,6 +28,8 @@ class Tables extends Migration
             $table->string('link');
             $table->string('user');
             $table->smallInteger('karma');
+            $table->string('checksum');
+            $table->boolean('enabled');
             $table->datetime('created_at');
             $table->integer('remote_id');
         });
@@ -42,6 +44,7 @@ class Tables extends Migration
             $table->string('user');
             $table->smallInteger('karma');
             $table->smallInteger('number');
+            $table->string('checksum');
             $table->datetime('created_at');
             $table->integer('remote_id');
 
