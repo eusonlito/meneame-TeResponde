@@ -3,6 +3,8 @@ namespace App\Models\Helpers;
 
 trait Comment
 {
+    use Helper;
+
     /**
      * @param string $text
      *
@@ -16,7 +18,7 @@ trait Comment
         ], [
             '</p>',
             '<a href="#comment-$1">#$1</a>'
-        ], strip_tags($text, '<p><a><b><strong><i><u><del><em>'));
+        ], self::stripTags($text));
     }
 
     /**

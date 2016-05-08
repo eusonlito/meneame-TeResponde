@@ -3,6 +3,8 @@ namespace App\Models\Helpers;
 
 trait Post
 {
+    use Helper;
+
     /**
      * @param string $text
      *
@@ -14,6 +16,6 @@ trait Post
             '$</p>.*$',
         ], [
             '</p>',
-        ], strip_tags($text, '<p><a><b><strong><i><u><del><em>'));
+        ], self::stripTags($text));
     }
 }
