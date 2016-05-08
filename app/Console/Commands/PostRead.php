@@ -32,7 +32,7 @@ class PostRead extends Command
      */
     public function handle()
     {
-        $this->info('START: '.date('Y-m-d H:i:s'));
+        $this->info('START '.$this->signature.': '.date('Y-m-d H:i:s'));
 
         $this->api = new Api;
 
@@ -44,7 +44,9 @@ class PostRead extends Command
             }
         }
 
-        $this->info('END: '.date('Y-m-d H:i:s'));
+        $this->info('START '.$this->signature.': '.date('Y-m-d H:i:s'));
+
+        $this->call('cache:clear');
     }
 
     /**
