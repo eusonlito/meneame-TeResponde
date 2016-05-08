@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Laravel\Lumen\Routing\Controller as BaseController;
+use App\Services\Cache;
 
 class Controller extends BaseController
 {
@@ -14,8 +15,8 @@ class Controller extends BaseController
     {
         $html = view($template, $parameters)->render();
 
-        if (CACHE_ENABLED) {
-            file_put_contents(CACHE_FILE, $html);
+        if (env('APP_CACHE')) {
+            Cache\Html::setFromUri($html);
         }
 
         return response($html);

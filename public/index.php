@@ -1,12 +1,4 @@
 <?php
-define('CACHE_DIR', __DIR__.'/../storage/cache/html');
-define('CACHE_FILE', CACHE_DIR.'/'.md5(getenv('REQUEST_URI')));
-define('CACHE_ENABLED', is_dir(CACHE_DIR));
-
-if (CACHE_ENABLED && is_file(CACHE_FILE)) {
-    readfile(CACHE_FILE) && exit;
-}
-
 /*
 |--------------------------------------------------------------------------
 | Create The Application
