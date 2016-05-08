@@ -16,7 +16,7 @@ class Controller extends BaseController
         $html = view($template, $parameters)->render();
 
         if (env('APP_CACHE')) {
-            Cache\Html::setFromUri($html);
+            Cache\Html::set($html);
         }
 
         return response($html);

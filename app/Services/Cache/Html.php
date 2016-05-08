@@ -4,15 +4,18 @@ namespace App\Services\Cache;
 class Html
 {
     /**
+     * @var array
+     */
+    private static $allowedQuery = ['page' => true];
+
+    /**
      * @param string $key
      *
      * @return boolean
      */
-    public static function exists($key)
+    public static function exists($key = null)
     {
-        $file = self::file($key);
-
-        return is_file($file) && ((filemtime($file) + self::$expires) > time());
+        return is_file(self::file($key));
     }
 
     /**
@@ -20,7 +23,7 @@ class Html
      *
      * @return string
      */
-    public static function get($key)
+    public static function get($key = null)
     {
         if (self::exists($key)) {
             return file_get_contents(self::file($key));
@@ -28,12 +31,12 @@ class Html
     }
 
     /**
-     * @param string $key
      * @param string $contents
+     * @param string $key
      *
      * @return string
      */
-    public static function set($key, $contents)
+    public static function set($contents, $key = null)
     {
         $file = self::file($key);
 
@@ -46,16 +49,21 @@ class Html
         return $contents;
     }
 
-    /**
-     * @param string $contents
-     *
-     * @return string
-     */
-    public static function setFromUri($contents)
+    private static function key($key = null)
     {
-        $path = parse_url(app('request')->path(), PHP_URL_PATH);
+        if ($key) {
+            return str_slug($key);
+        }
 
-        return self::set(((empty($path) || ($path === '/')) ? 'index' : $path), $contents);
+        $key = app('request')->path();
+        $key = ((empty($key) || ($key === '/')) ? 'index' : $key);
+
+        if (($key === 'index') && ($query = getenv('QUERY_STRING'))) {
+            parse_str($query, $query);
+            $key .= '-'.str_slug(http_build_query(array_intersect_key($query, self::$allowedQuery)));
+        }
+
+        return $key;
     }
 
     /**
@@ -65,6 +73,6 @@ class Html
      */
     private static function file($key)
     {
-        return base_path('public/storage/cache/'.$key.'.html');
+        return base_path('public/storage/cache/'.self::key($key).'.html');
     }
 }

@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models;
+use App\Services\Cache;
 
 class Site extends Controller
 {

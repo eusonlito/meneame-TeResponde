@@ -12,5 +12,6 @@ class RegisterServiceProvider extends ServiceProvider
     {
         $this->app->register(AppServiceProvider::class);
         $this->app->register(ConfigServiceProvider::class);
+        $this->app->register(MiddlewareServiceProvider::class);
     }
 }
