@@ -11,10 +11,10 @@ trait Post
     public static function fixText($text)
     {
         return preg_replace([
-            '$<p><strong>etiquetas.*$',
+            '$</p>.*$',
             '$<img[^>]+>$',
         ], [
-            '',
+            '</p>',
             '',
         ], $text);
     }

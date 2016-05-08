@@ -11,11 +11,11 @@ trait Comment
     public static function fixText($text)
     {
         return preg_replace([
-            '$<p>&#187;&nbsp;autor: <strong>[^<]+</strong></p>$',
+            '$</p>.*$',
             '$<img[^>]+>$',
             '$<a class="tooltip [^"]+" href="[^"]+" rel="nofollow">#([0-9]+)</a>$'
         ], [
-            '',
+            '</p>',
             '',
             '<a href="#comment-$1">#$1</a>'
         ], $text);
