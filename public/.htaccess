@@ -10,6 +10,11 @@ DirectoryIndex index.php
     RewriteRule ^(.*)/$ /$1 [L,R=301]
 
     RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond $1#%{REQUEST_FILENAME} ^/?#(.*/public)/
+    RewriteCond %1/storage/cache/index.html -f
+    RewriteRule ^$ storage/cache/index.html [L,NC]
+
+    RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond $1#%{REQUEST_FILENAME} ^([a-z0-9/-]+)#(.*/public)/
     RewriteCond %2/storage/cache/%1.html -f
     RewriteRule ^([a-z0-9/-]+)$ storage/cache/$1.html [L,NC]
