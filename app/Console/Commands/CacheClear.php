@@ -16,12 +16,12 @@ class CacheClear extends Command
     /**
      * @var string
      */
-    protected $description = 'Clear cache folder';
+    protected $description = 'Clear cache folders';
 
     /**
      * @var array
      */
-    private $folders = ['curl', 'html'];
+    private $folders = ['storage/cache/curl', 'public/storage/cache'];
 
     /**
      * @var integer
@@ -36,7 +36,7 @@ class CacheClear extends Command
         $this->info('START '.$this->signature.': '.date('Y-m-d H:i:s'));
 
         foreach ($this->folders as $folder) {
-            $folder = storage_path('cache/'.$folder);
+            $folder = base_path($folder);
 
             $this->deleteFiles($folder);
             $this->deleteEmptyFolders($folder, false);
