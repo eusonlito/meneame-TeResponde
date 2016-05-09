@@ -27,7 +27,7 @@ class Site extends Controller
         $post = Models\Post::where('id', $id)->first();
 
         if (empty($post)) {
-            return redirect()->back();
+            return redirect()->route('site.index');
         }
 
         if ($post->slug !== $slug) {

@@ -29,6 +29,18 @@
 
                 <hr />
 
+                <ul class="pager">
+                    <li class="previous">
+                        <a href="{{ back('site.index') }}">&larr; Volver</a>
+                    </li>
+
+                    <li class="next">
+                        <a href="{{ $post->link }}" target="_blank">Ver en meneame.net &rarr;</a>
+                    </li>
+                </ul>
+
+                <hr />
+
                 <div class="interview">
                     @foreach ($interview as $turn)
                         @include('pages.comment.interview', $turn)
@@ -37,7 +49,7 @@
 
                 <ul class="pager">
                     <li class="previous">
-                        <a href="{{ route('site.index') }}">&larr; Volver</a>
+                        <a href="{{ back('site.index') }}">&larr; Volver</a>
                     </li>
 
                     <li class="next">
