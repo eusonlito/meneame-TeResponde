@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models;
-use App\Services\Cache;
+use App\Services\Image;
 
 class Site extends Controller
 {
@@ -38,7 +38,8 @@ class Site extends Controller
 
         return $this->view('pages.post.post', [
             'post' => $post,
-            'interview' => Models\Comment::where('post_id', $post->id)->interview($post)
+            'interview' => Models\Comment::where('post_id', $post->id)->interview($post),
+            'background' => Image\Background::fromString($post->title)
         ]);
     }
 

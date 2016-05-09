@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "35bc702ee2737dbd2841c3d5f0aa23c3",
-    "content-hash": "8b1d97ffbb12736a55917afee67ed925",
+    "hash": "8f8c8d23dd43409d323c95513c570dc7",
+    "content-hash": "2fa739acf0ba8f7f96634b1730335147",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -1516,6 +1516,53 @@
             "time": "2012-12-21 11:40:51"
         },
         {
+            "name": "redeyeventures/geopattern",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mauris/geopattern-php.git",
+                "reference": "276684e71d6e9ed2b7aa88c07db7d2fe89790226"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mauris/geopattern-php/zipball/276684e71d6e9ed2b7aa88c07db7d2fe89790226",
+                "reference": "276684e71d6e9ed2b7aa88c07db7d2fe89790226",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "GeoPattern\\": "src/GeoPattern/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anand Capur",
+                    "email": "anand@redeyeventures.com",
+                    "homepage": "http://redeyeventures.com"
+                }
+            ],
+            "description": "Generate beautiful SVG patterns.",
+            "keywords": [
+                "background",
+                "geometric",
+                "laravel",
+                "pattern",
+                "svg"
+            ],
+            "support": {
+                "source": "https://github.com/redeyeventures/geopattern-php",
+                "issues": "https://github.com/redeyeventures/geopattern-php/issues"
+            },
+            "time": "2014-12-02 08:50:30"
+        },
+        {
             "name": "symfony/console",
             "version": "v3.0.5",
             "source": {
@@ -2210,7 +2257,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "redeyeventures/geopattern": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
