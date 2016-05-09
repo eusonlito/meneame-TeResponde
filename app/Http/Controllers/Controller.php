@@ -13,12 +13,6 @@ class Controller extends BaseController
 
     protected function view($template, array $parameters = array())
     {
-        $html = view($template, $parameters)->render();
-
-        if (env('APP_CACHE')) {
-            Cache\Html::set($html);
-        }
-
-        return response($html);
+        return response(Cache\Html::set(view($template, $parameters)->render()));
     }
 }

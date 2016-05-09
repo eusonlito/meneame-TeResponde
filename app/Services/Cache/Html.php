@@ -9,13 +9,21 @@ class Html
     private static $allowedQuery = ['page' => true];
 
     /**
+     * @return boolean
+     */
+    private static function enabled()
+    {
+        return env('APP_CACHE') ? true : false;
+    }
+
+    /**
      * @param string $key
      *
      * @return boolean
      */
     public static function exists($key = null)
     {
-        return is_file(self::file($key));
+        return self::enabled() && is_file(self::file($key));
     }
 
     /**
@@ -38,6 +46,10 @@ class Html
      */
     public static function set($contents, $key = null)
     {
+        if (self::enabled() === false) {
+            return $contents;
+        }
+
         $file = self::file($key);
 
         if (!is_dir(dirname($file))) {
@@ -49,6 +61,11 @@ class Html
         return $contents;
     }
 
+    /**
+     * @param string $key
+     *
+     * @return string
+     */
     private static function key($key = null)
     {
         if ($key) {
