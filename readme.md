@@ -8,7 +8,7 @@ La ordenación es de preguntas más valoradas a menos, hasta un mínimo de 10 de
 
 Puedes ver una demo aquí https://meneame-responde.lito.com.es/
 
-Para instalar:
+### Instalación
 
 ```
 $> git clone https://github.com/eusonlito/meneame-responde.git
@@ -22,11 +22,13 @@ $> php artisan migrate
 $> php artisan post:read
 ```
 
+### Configuración de Cachés
+
 El `.htaccess` existente en `public/` permite a Apache recuperar cachés en HTML de cada página. Estas cachés se generan desde PHP y se almacenan en `storage/cache/` evitando así realizar peticiones a código PHP de páginas prácticamente estáticas.
 
 Para poder utilizar estas cachés, simplemente configura `APP_CACHE=true` la variable del fichero `.env`. Sólo se generan estáticos HTML de peticiones válidas.
 
-Para configurarlo en nginx, utiliza el siguiente código:
+Para configurarlo en nginx, puedes utilizar el siguiente código:
 
 ```
 set $cachefile "";
@@ -55,6 +57,8 @@ location / {
     try_files $cachefile $uri $uri/ /index.php?$query_string;
 }
 ```
+
+### Actualización de contenidos
 
 Para refrescar los contenidos puedes configurar el comando `php artisan post:read` en un cronjob:
 
