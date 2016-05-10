@@ -26,7 +26,7 @@ $> php artisan post:read
 
 El `.htaccess` existente en `public/` permite a Apache recuperar cachés en HTML de cada página. Estas cachés se generan desde PHP y se almacenan en `storage/cache/` evitando así realizar peticiones a código PHP de páginas prácticamente estáticas.
 
-Para poder utilizar estas cachés, simplemente configura `APP_CACHE=true` la variable del fichero `.env`. Sólo se generan estáticos HTML de peticiones válidas.
+Para poder utilizar estas cachés, simplemente configura la variable `APP_CACHE=true` del fichero `.env`. Sólo se generan estáticos HTML de peticiones válidas.
 
 Para configurarlo en nginx, puedes utilizar el siguiente código:
 
