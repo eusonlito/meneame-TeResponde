@@ -24,12 +24,8 @@
             </form>
 
             @foreach ($posts as $post)
-                @include('pages.post._list')
+                @include('pages.post._simple')
             @endforeach
-
-            @include('molecules.paginate', [
-                'result' => $posts
-            ])
         </div>
     </div>
 </div>

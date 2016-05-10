@@ -12,7 +12,17 @@ class Site extends Controller
     public function index()
     {
         return $this->view('pages.index.index', [
-            'posts' => Models\Post::orderBy('created_at', 'DESC')->paginate(10)
+            'posts' => Models\Post::orderBy('created_at', 'DESC')->paginate(20)
+        ]);
+    }
+
+    /**
+     * @return object
+     */
+    public function list()
+    {
+        return $this->view('pages.index.list', [
+            'posts' => Models\Post::orderBy('created_at', 'DESC')->get()
         ]);
     }
 

@@ -43,6 +43,7 @@
                 <div class="collapse navbar-collapse" id="main-navbar">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="{{ route('site.index') }}">Portada</a></li>
+                        <li><a href="{{ route('site.list') }}">Listado</a></li>
                         <li><a href="{{ route('site.about') }}">Contacta</a></li>
                     </ul>
                 </div>
