@@ -2,7 +2,7 @@
     border-radius: 0 !important;
 }
 
-.navbar *, .site-heading *, .post-heading * {
+.site-heading *, .post-heading * {
     text-shadow: #000 0 0 10px;
 }
 
@@ -47,6 +47,10 @@ h2.question {
 }
 
 @media (min-width: 768px) {
+    .navbar * {
+        text-shadow: #000 0 0 10px;
+    }
+
     .intro-header .site-heading, .intro-header .post-heading, .intro-header .page-heading {
         padding: 100px 0;
     }
