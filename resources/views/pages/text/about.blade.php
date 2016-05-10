@@ -21,7 +21,7 @@
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <ul>
                 <li>El código fuente lo tienes disponible en <a href="https://github.com/eusonlito/meneame-responde" target="_blank">GitHub</a></li>
-                <li>Las imágenes utilizadas en las cabeceras son obras Creative Commons obtenidas de <a href="http://www.uhdwallpapers.org/p/creative-commons-images.html" target="_blank">http://www.uhdwallpapers.org/p/creative-commons-images.html</a></li>
+                <li>Las utilizadas en las cabeceras son obras Creative Commons obtenidas de <a href="http://www.uhdwallpapers.org/p/creative-commons-images.html" target="_blank">http://www.uhdwallpapers.org/p/creative-commons-images.html</a> y <a href="http://christmasstockimages.com/free/Stars/slides/blue_star_backdrop.htm" target="_blank">http://christmasstockimages.com/free/Stars/slides/blue_star_backdrop.htm</a></li>
                 <li>El tema utilizado es el distribuido bajo licencia MIT por <a href="https://github.com/BlackrockDigital/startbootstrap-clean-blog" target="_blank">https://github.com/BlackrockDigital/startbootstrap-clean-blog</a></li>
                 <li>El framework de desarrollo es <a href="https://lumen.laravel.com/" target="_blank">Lumen</a></li>
                 <li>El servidor usa Ubuntu 16.04 + nginx + PHP7-FPM + MySQL 5.7</li>
