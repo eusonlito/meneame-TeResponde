@@ -6,6 +6,10 @@
     text-shadow: #000 0 0 10px;
 }
 
+.navbar.is-fixed * {
+    text-shadow: none;
+}
+
 #main-search {
     margin-bottom: 40px;
 }
