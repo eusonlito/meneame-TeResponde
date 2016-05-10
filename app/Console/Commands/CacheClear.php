@@ -42,7 +42,7 @@ class CacheClear extends Command
             $this->deleteEmptyFolders($folder, false);
         }
 
-        $this->info('START '.$this->signature.': '.date('Y-m-d H:i:s'));
+        $this->info('END '.$this->signature.': '.date('Y-m-d H:i:s'));
     }
 
     /**
