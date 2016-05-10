@@ -1,0 +1,10 @@
+{
+    "css": [
+        "clean-blog.min.css",
+        "custom.201605102217.css"
+    ],
+    "js": [
+        "clean-blog.min.js",
+        "custom.201605102217.js"
+    ]
+}
