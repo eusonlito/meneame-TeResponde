@@ -46,6 +46,7 @@ class PostRead extends Command
 
         $this->info('END '.$this->signature.': '.date('Y-m-d H:i:s'));
 
+        $this->call('cache:json');
         $this->call('cache:clear');
     }
 

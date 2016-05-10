@@ -1,8 +1,15 @@
 <?php
 namespace App\Services\Cache;
 
+use App\Services\Filesystem\File;
+
 class Html
 {
+    /**
+    * @var string
+    */
+    private static $path = 'public/storage/cache';
+
     /**
      * @var array
      */
@@ -23,7 +30,7 @@ class Html
      */
     public static function exists($key = null)
     {
-        return self::enabled() && is_file(self::file($key));
+        return self::enabled() && File::exists(self::file($key));
     }
 
     /**
@@ -33,9 +40,7 @@ class Html
      */
     public static function get($key = null)
     {
-        if (self::exists($key)) {
-            return file_get_contents(self::file($key));
-        }
+        return File::get(self::file($key));
     }
 
     /**
@@ -50,15 +55,7 @@ class Html
             return $contents;
         }
 
-        $file = self::file($key);
-
-        if (!is_dir(dirname($file))) {
-            mkdir(dirname($file), 0700, true);
-        }
-
-        file_put_contents($file, $contents);
-
-        return $contents;
+        return File::set(self::file($key), $contents);
     }
 
     /**
@@ -90,6 +87,6 @@ class Html
      */
     private static function file($key)
     {
-        return base_path('public/storage/cache/'.self::key($key).'.html');
+        return self::$path.'/'.self::key($key).'.html';
     }
 }

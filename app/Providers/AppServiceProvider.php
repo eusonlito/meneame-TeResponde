@@ -12,5 +12,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->withEloquent();
         $this->app->withFacades();
+
+        class_alias('App\Services\Cache\Asset', 'Asset');
     }
 }

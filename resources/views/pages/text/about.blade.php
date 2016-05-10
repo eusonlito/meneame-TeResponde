@@ -27,7 +27,6 @@
                 <li>El servidor usa Ubuntu 16.04 + nginx + PHP7-FPM + MySQL 5.7</li>
                 <li>Aquí tienes las <a href="https://meneame-responde.lito.com.es/stats/report.html" target="_blank">estadísticas del proyecto.</li>
                 <li>Yo soy <a href="https://about.me/lito" target="_blank">Lito</a></li>
-                <li>Este proyecto me ha llevado unas <a href="https://github.com/eusonlito/meneame-responde" target="_blank">10 horas</a></li>
             </ul>
         </div>
     </div>

@@ -18,4 +18,12 @@ trait Post
             '</p>',
         ], self::stripTags($text));
     }
+
+    /**
+     * @return string
+     */
+    public function getDateHumanAttribute()
+    {
+        return strftime('%e de %B de %Y', strtotime($this->created_at));
+    }
 }

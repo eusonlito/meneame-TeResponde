@@ -7,13 +7,14 @@
 
         <title>{{ $title ? ($title.' - ') : '' }}Menéame Responde</title>
 
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
         <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
 
-        <link href="{{ asset('css/clean-blog.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.bootstrap3.min.css" rel="stylesheet" type="text/css">
+
+        {!! Asset::css() !!}
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 
@@ -88,9 +89,14 @@
             </div>
         </footer>
 
-        <script src="//code.jquery.com/jquery-2.2.3.min.js"></script>
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+        var WWW = "{{ url('') }}";
+        </script>
 
-        <script src="{{ asset('js/clean-blog.min.js') }}"></script>
+        <script src="//code.jquery.com/jquery-2.2.3.min.js" type="text/javascript"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js" type="text/javascript"></script>
+
+        {!! Asset::js() !!}
     </body>
 </html>

@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\PostRead::class,
         Commands\CacheClear::class,
+        Commands\CacheJson::class,
     ];
 
     /**

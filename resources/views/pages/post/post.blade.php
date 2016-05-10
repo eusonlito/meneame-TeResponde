@@ -11,7 +11,7 @@
 
                     <span class="meta">
                         Enviado por <strong>{{ $post->user }}</strong>
-                        el {{ strftime('%e de %B de %Y', strtotime($post->created_at)) }}
+                        el {{ $post->dateHuman }}
                     </span>
                 </div>
             </div>
