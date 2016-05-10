@@ -2,10 +2,8 @@
     border-radius: 0 !important;
 }
 
-.intro-header .site-heading .subheading, .intro-header .page-heading .subheading,
-.intro-header .site-heading h1, .intro-header .page-heading h1, .intro-header .post-heading h1,
-.intro-header .post-heading .meta {
-    text-shadow: #000 0 0 20px;
+.navbar *, .site-heading *, .post-heading * {
+    text-shadow: #000 0 0 10px;
 }
 
 .well.well-lg {
