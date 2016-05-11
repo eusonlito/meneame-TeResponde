@@ -29,6 +29,16 @@
             width: 50%;
             text-align: center;
         }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                width: 90%;
+            }
+        }
         </style>
     </head>
 
