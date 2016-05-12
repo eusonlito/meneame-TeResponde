@@ -15,8 +15,8 @@ class Cache
      */
     public function handle($request, Closure $next)
     {
-        if ($cache = Cache\Html::exists()) {
-            return response($cache);
+        if (Cache\Html::exists()) {
+            return response(Cache\Html::get());
         }
 
         return $next($request);
