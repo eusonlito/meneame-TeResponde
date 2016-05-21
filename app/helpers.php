@@ -12,6 +12,9 @@ function back($default)
 
     $url = parse_url($referer);
 
+    $url['path'] = $url['path'] ?? '';
+    $url['host'] = $url['host'] ?? '';
+
     if (($url['path'] !== getenv('REQUEST_URI')) && ($url['host'] === getenv('SERVER_NAME'))) {
         return $referer;
     }
