@@ -9,11 +9,22 @@ class Api
     private $curl;
 
     /**
+     * @var array
+     */
+    private $categories = ['TeRespondo', 'Pregúntame'];
+
+    /**
      * @return array
      */
     public function getPosts()
     {
-        return $this->curl()->getXml('/m/TeRespondo/rss');
+        $items = [];
+
+        foreach ($this->categories as $category) {
+            $items = array_merge($items, $this->curl()->getXml('/m/'.$category.'/rss'));
+        }
+
+        return $items;
     }
 
     /**
@@ -23,7 +34,7 @@ class Api
      */
     public function getComments($post_id)
     {
-        return $this->curl()->getXml('/m/TeRespondo/comments_rss?id='.$post_id);
+        return $this->curl()->getXml('/comments_rss?id='.$post_id);
     }
 
     /**

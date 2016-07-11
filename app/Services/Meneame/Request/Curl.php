@@ -75,10 +75,16 @@ class Curl
     {
         $xml = Xml::fromString(preg_replace('#<(/?)[a-zA-Z0-9]+:#', '<$1', $this->get($url, $data)));
 
+        if (empty($xml)) {
+            return array();
+        }
+
         $items = array();
 
         foreach ($xml['rss']['channel'][0]['item'] as $item) {
-            $items[] = Xml::stringToObject($item['@value']);
+            if ($item = Xml::stringToObject($item['@value'])) {
+                $items[] = $item;
+            }
         }
 
         return $items;

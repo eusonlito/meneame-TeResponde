@@ -27,7 +27,11 @@ class Xml
     {
         $xml = self::getDOMDocument();
 
-        $xml->loadXML($string);
+        try {
+            $xml->loadXML(html_entity_decode($string));
+        } catch (Exception $e) {
+            return;
+        }
 
         return array(
             $xml->documentElement->tagName => self::nodeToArray($xml->documentElement)
@@ -46,6 +50,10 @@ class Xml
     public static function stringToObject($xml)
     {
         $xml = self::fromString('<root>'.trim($xml).'</root>');
+
+        if (empty($xml)) {
+            return;
+        }
 
         $item = new stdClass;
 
